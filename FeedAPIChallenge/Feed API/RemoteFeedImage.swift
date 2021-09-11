@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RemoteAPIResponse: Decodable {
+struct RemoteFeedImages: Decodable {
 	let items: [RemoteFeedImage]
 }
 

@@ -13,9 +13,9 @@ class RemoteFeedImageToFeedImageMapper {
 		return remoteFeedImages.map {
 			remoteFeedImage in
 			return FeedImage(id: remoteFeedImage.id,
-							 description: remoteFeedImage.description,
-							 location: remoteFeedImage.location,
-							 url: remoteFeedImage.url)
+			                 description: remoteFeedImage.description,
+			                 location: remoteFeedImage.location,
+			                 url: remoteFeedImage.url)
 		}
 	}
 }

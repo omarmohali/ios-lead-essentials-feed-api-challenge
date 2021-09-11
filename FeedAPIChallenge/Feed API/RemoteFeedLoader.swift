@@ -36,7 +36,7 @@ public final class RemoteFeedLoader: FeedLoader {
 
 	private func handleLoadFeedSuccess(with data: Data, completion: @escaping (FeedLoader.Result) -> Void) {
 		let decoder = JSONDecoder()
-		if let apiResponse = try? decoder.decode(RemoteAPIResponse.self, from: data) {
+		if let apiResponse = try? decoder.decode(RemoteFeedImages.self, from: data) {
 			completion(.success(RemoteFeedImageToFeedImageMapper.getFeedImages(from: apiResponse.items)))
 		} else {
 			completion(.failure(RemoteFeedLoader.Error.invalidData))
