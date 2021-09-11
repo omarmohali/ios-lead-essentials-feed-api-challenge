@@ -4,24 +4,6 @@
 
 import Foundation
 
-struct RemoteAPIResponse: Decodable {
-	let items: [RemoteFeedImage]
-}
-
-struct RemoteFeedImage: Decodable {
-	let id: UUID
-	let description: String?
-	let location: String?
-	let url: URL
-
-	enum CodingKeys: String, CodingKey {
-		case id = "image_id"
-		case description = "image_desc"
-		case location = "image_loc"
-		case url = "image_url"
-	}
-}
-
 class RemoteFeedImageToFeedImageMapper {
 	static func getFeedImages(from remoteFeedImages: [RemoteFeedImage]) -> [FeedImage] {
 		return remoteFeedImages.map {
