@@ -43,7 +43,7 @@ public final class RemoteFeedLoader: FeedLoader {
 			case let .success((data, response)):
 				if response.statusCode == 200 {
 					let decoder = JSONDecoder()
-					if (try? decoder.decode(RemoteAPIResponse.self, from: data)) != nil {
+					if let _ = try? decoder.decode(RemoteAPIResponse.self, from: data) {
 						completion(.success([]))
 					} else {
 						completion(.failure(RemoteFeedLoader.Error.invalidData))
