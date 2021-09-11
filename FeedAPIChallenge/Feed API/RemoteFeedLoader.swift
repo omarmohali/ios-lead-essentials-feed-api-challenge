@@ -4,18 +4,6 @@
 
 import Foundation
 
-class RemoteFeedImageToFeedImageMapper {
-	static func getFeedImages(from remoteFeedImages: [RemoteFeedImage]) -> [FeedImage] {
-		return remoteFeedImages.map {
-			remoteFeedImage in
-			return FeedImage(id: remoteFeedImage.id,
-			                 description: remoteFeedImage.description,
-			                 location: remoteFeedImage.location,
-			                 url: remoteFeedImage.url)
-		}
-	}
-}
-
 public final class RemoteFeedLoader: FeedLoader {
 	private let url: URL
 	private let client: HTTPClient
