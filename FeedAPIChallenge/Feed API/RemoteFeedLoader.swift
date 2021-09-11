@@ -22,6 +22,15 @@ struct RemoteFeedImage: Decodable {
 	}
 }
 
+extension FeedImage {
+	init(remoteFeedImage: RemoteFeedImage) {
+		self.init(id: remoteFeedImage.id,
+		          description: remoteFeedImage.description,
+		          location: remoteFeedImage.location,
+		          url: remoteFeedImage.url)
+	}
+}
+
 public final class RemoteFeedLoader: FeedLoader {
 	private let url: URL
 	private let client: HTTPClient
@@ -43,8 +52,9 @@ public final class RemoteFeedLoader: FeedLoader {
 			case let .success((data, response)):
 				if response.statusCode == 200 {
 					let decoder = JSONDecoder()
-					if let _ = try? decoder.decode(RemoteAPIResponse.self, from: data) {
-						completion(.success([]))
+					if let apiResponse = try? decoder.decode(RemoteAPIResponse.self, from: data) {
+						let mappedFeedImageItems = apiResponse.items.map({ FeedImage(remoteFeedImage: $0) })
+						completion(.success(mappedFeedImageItems))
 					} else {
 						completion(.failure(RemoteFeedLoader.Error.invalidData))
 					}
