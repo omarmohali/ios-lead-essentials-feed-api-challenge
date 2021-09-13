@@ -8,7 +8,10 @@
 
 import Foundation
 
-class RemoteFeedImageToFeedImageMapper {
+final class RemoteFeedImageToFeedImageMapper {
+	
+	private init() {}
+
 	static func getFeedImages(from remoteFeedImages: [RemoteFeedImage]) -> [FeedImage] {
 		return remoteFeedImages.map {
 			remoteFeedImage in
